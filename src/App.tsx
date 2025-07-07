@@ -4,24 +4,16 @@ import Footer from './sections/Footer/Footer'
 import { FooterData } from './data/FooterData'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import { setDarkMode } from './redux/slice/Theme'
+import { toggleDarkMode } from './redux/slice/Theme'
 import HandleLoadingComponent from './components/HandleLoadingComponent/HandleLoadingComponent'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 import SocailBtn from './components/SocailBtn/SocailBtn'
 
 function App() {
-const dispatch = useDispatch();
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    
-    if (savedTheme === 'dark') {
-      dispatch(setDarkMode(true));
-    } else {
-      dispatch(setDarkMode(false));
-    } 
-  }, [dispatch]);
-
+ const dispatch = useDispatch();
+ useEffect(() => {
+  dispatch(toggleDarkMode());
+ },[]);
   return (
     <>
     
