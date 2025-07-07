@@ -2,18 +2,19 @@ import { Outlet } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar'
 import Footer from './sections/Footer/Footer'
 import { FooterData } from './data/FooterData'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { toggleDarkMode } from './redux/slice/Theme'
 import HandleLoadingComponent from './components/HandleLoadingComponent/HandleLoadingComponent'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 import SocailBtn from './components/SocailBtn/SocailBtn'
-
+import type { RootState } from './redux/store';
 function App() {
- const dispatch = useDispatch();
- useEffect(() => {
-  dispatch(toggleDarkMode());
- },[]);
+    const isDark = useSelector((state: RootState) => state.theme.isDark);
+    
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark);
+  }, [isDark]);
+
   return (
     <>
     

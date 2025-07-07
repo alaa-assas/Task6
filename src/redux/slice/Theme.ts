@@ -1,10 +1,12 @@
-
 import { createSlice } from '@reduxjs/toolkit';
 
-const getInitialTheme = () => {
+const getInitialTheme = (): boolean => {
   const savedTheme = localStorage.getItem('theme');
+
   if (savedTheme === 'dark') return true;
   if (savedTheme === 'light') return false;
+
+  localStorage.setItem('theme', 'light');
   return false;
 };
 
@@ -22,7 +24,6 @@ const themeSlice = createSlice({
   reducers: {
     toggleDarkMode: (state) => {
       state.isDark = !state.isDark;
-
       const root = document.documentElement;
       if (state.isDark) {
         root.classList.add('dark');
@@ -32,9 +33,8 @@ const themeSlice = createSlice({
         localStorage.setItem('theme', 'light');
       }
     },
-    setDarkMode: (state, action) => {
+    setDarkMode: (state, action: { payload: boolean }) => {
       state.isDark = action.payload;
-
       const root = document.documentElement;
       if (state.isDark) {
         root.classList.add('dark');
@@ -48,5 +48,4 @@ const themeSlice = createSlice({
 });
 
 export const { toggleDarkMode, setDarkMode } = themeSlice.actions;
-
 export default themeSlice.reducer;

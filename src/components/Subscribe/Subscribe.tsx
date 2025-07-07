@@ -67,7 +67,7 @@ const Subscribe = () => {
         </button>
       </form>
 
-      <p className="text-sm text-gray01">
+      <p className="text-sm text-grey01">
         We care about your data in our{" "}
         <Link to="#" className="underline underline-offset-4 dark:hover:text-grey03 hover:text-purple01 transition-colors duration-300">
           privacy policy
